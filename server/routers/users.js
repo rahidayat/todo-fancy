@@ -4,7 +4,7 @@ var controller = require ('../controllers/userController')
 var todoCont = require ('../controllers/todoController')
 var auth  = require('../helpers/authorizer')
 
-router.get('/', auth.checkAuth, controller.getAllUsers);
+router.get('/', controller.getAllUsers);
 router.get('/:id', auth.checkAuth, controller.getSingleUser);
 router.put('/:id', auth.checkAuth, controller.updateUser);
 router.delete('/:id', auth.checkAuth, controller.deleteUser);

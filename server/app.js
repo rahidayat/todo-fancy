@@ -2,12 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/todofancy');
+const cors = require('cors');
 
 
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(cors());
 
 let index = require('./routers/index');
 let user = require('./routers/users');

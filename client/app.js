@@ -20,6 +20,9 @@ var app = new Vue({
     },
     signin() {
       axios.post(`http://localhost:3000/signin`, this.login)
+      .then(data => {
+        console.log(data);
+      })
 
     }
   }

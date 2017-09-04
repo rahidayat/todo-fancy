@@ -23,32 +23,35 @@
       </section>
       <section class="section">
         <div class="column is-half is-offset-one-quarter">
-          <div class="field">
-            <p class="control has-icons-left has-icons-right">
-              <input class="input" type="text" placeholder="Username">
-              <span class="icon is-small is-left">
-                <i class="fa fa-user"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fa fa-check"></i>
-              </span>
-            </p>
-          </div>
-          <div class="field">
-            <p class="control has-icons-left">
-              <input class="input" type="password" placeholder="Password">
-              <span class="icon is-small is-left">
-                <i class="fa fa-lock"></i>
-              </span>
-            </p>
-          </div>
-          <div class="field">
-            <p class="control">
-              <button class="button is-primary">
-                Login
-              </button>
-            </p>
-          </div>
+          <form class="" action="#">
+            <div class="field">
+              <p class="control has-icons-left has-icons-right">
+                <input class="input" type="text" placeholder="Username" v-model="login.username">
+                <span class="icon is-small is-left">
+                  <i class="fa fa-user"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fa fa-check"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" type="password" placeholder="Password" v-model="login.password">
+                <span class="icon is-small is-left">
+                  <i class="fa fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <button class="button is-primary" type="submit" name="action" v-on:click="signin()">
+                  Login
+                </button>
+              </p>
+            </div>
+          </form>
+
         </div>
         <div class="column is-half is-offset-one-quarter">
           <form class="" action="#">

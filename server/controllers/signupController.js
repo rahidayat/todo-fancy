@@ -13,8 +13,12 @@ function signupUser(req, res) {
     isAdmin: req.body.isAdmin,
     salt: salt
   })
-  .then(result => res.send(result))
-  .catch(err=> res.send(err))
+  .then(() => {
+    res.send({msg:`Hello ${req.body.username}! Your user was registered! Have fun!`})
+  })
+  .catch(err => {
+    return res.status(400).send({msg: err.message})
+  })
 }
 
 

@@ -5,7 +5,9 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config()
 
 function signinUser (req,res) {
-  if (req.headers.tes == undefined) {
+  if(!req.body.username || !req.body.password){
+   res.status(403).send({msg: 'The login information was incorrect'})
+  } else {
     User.findOne({
       username: req.body.username
     })
@@ -16,17 +18,19 @@ function signinUser (req,res) {
         let token = jwt.sign({
             id: data._id,
             username: data.username,
-            email: data.email,
             isAdmin: data.isAdmin
           }, process.env.SECRET_JWT);
           console.log('berhasil log in');
-        res.send({token: token, id: data._id})
+        res.send({token: token, msg: 'Welcome user'})
 
       } else {
-        res.send('wrong password')
+        res.status(401).send({msg: 'Password salah'})
       }
     })
-    .catch(err => res.send(err))
+    .catch(err => {
+      console.log('errornya signin', err);
+      res.status(500).send({msg: 'An error has occured trying to log in'})
+    })
   }
 }
 

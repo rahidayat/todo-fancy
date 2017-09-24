@@ -1,12 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const logger = require('morgan');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/todofancy');
 const cors = require('cors');
+mongoose.connect('mongodb://localhost/todofancy', function(){
+    /* Drop the DB */
+    // mongoose.connection.db.dropDatabase();
+})
 
 
 
 const app = express();
+app.use(logger('combined'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(cors());

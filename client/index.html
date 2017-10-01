@@ -4,10 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>To Do App</title>
+    <script type="text/javascript" src="/assets/js/fblogin.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+    .error {
+      color: red;
+    }
+
+    </style>
   </head>
   <body>
     <div id="app">
@@ -23,6 +30,7 @@
       </section>
       <section class="section">
         <div class="column is-half is-offset-one-quarter">
+          <span class="error" v-html="error"></span>
           <form class="" action="#">
             <div class="field">
               <p class="control has-icons-left has-icons-right">
@@ -47,7 +55,12 @@
               <p class="control">
                 <button class="button is-primary" type="submit" name="action" v-on:click="signin()">
                   Login
-                </button>
+                </button> or
+                <span class="">
+                  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                  </fb:login-button>
+                  <div id="status"></div>
+                </span>
               </p>
             </div>
           </form>

@@ -3,15 +3,23 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
+
 mongoose.connect('mongodb://localhost/todofancy', function(){
     /* Drop the DB */
     // mongoose.connection.db.dropDatabase();
+
+    // Drop the 'users' collection from the current database
+    // mongoose.connection.db.dropCollection('users', function(err, result) {
+    //   if(!err) {
+    //     console.log('berhasil drop collection users');
+    //   }
+    // });
 })
 
 
 
 const app = express();
-app.use(logger('combined'))
+app.use(logger('dev'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(cors());

@@ -24,7 +24,9 @@ const checkAuth = (req,res,next) => {
       } else {
         if(req.headers.id == decoded.id) {
           next()
-        } else {res.send('ditolak gan')}
+        } else {
+          res.status(401).send({msg: 'You are not auth'})
+        }
         // res.status(401).send('You are not auth')
       }
     }

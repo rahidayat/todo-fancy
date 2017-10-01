@@ -4,7 +4,8 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-mongoose.connect('mongodb://localhost/todofancy', function(){
+mongoose.connect('mongodb://admin:123@cluster0-shard-00-00-jgxqq.mongodb.net:27017,cluster0-shard-00-01-jgxqq.mongodb.net:27017,cluster0-shard-00-02-jgxqq.mongodb.net:27017/todofancy?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin');
+// mongoose.connect('mongodb://localhost/todofancy', function(){
     /* Drop the DB */
     // mongoose.connection.db.dropDatabase();
 
@@ -14,7 +15,7 @@ mongoose.connect('mongodb://localhost/todofancy', function(){
     //     console.log('berhasil drop collection users');
     //   }
     // });
-})
+// })
 
 
 

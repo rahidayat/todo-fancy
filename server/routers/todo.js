@@ -3,11 +3,11 @@ var router = express.Router();
 var controller = require ('../controllers/todoController')
 var auth  = require('../helpers/authorizer')
 
-router.get('/', controller.getAllTodoes);
-router.post('/', auth.checkAuth, controller.addTodo);
-router.get('/:id', auth.checkAuth, controller.getSingleTodo);
-router.get('/user/:id', auth.checkAuth, controller.findByUserId);
-router.put('/:id', auth.checkAuth, controller.updateTodo);
-router.delete('/:id', auth.checkAuth, controller.deleteTodo);
+router.get('/', auth.checkLogin, controller.getAllTodoes);
+router.post('/', auth.checkLogin, controller.addTodo);
+router.get('/:id', auth.checkLogin, auth.checkAuth, controller.getSingleTodo);
+router.get('/user', auth.checkLogin, controller.findByUserId);
+router.put('/:id', auth.checkLogin, auth.checkAuth, controller.updateTodo);
+router.delete('/:id', auth.checkLogin, auth.checkAuth, controller.deleteTodo);
 
 module.exports = router;

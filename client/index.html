@@ -31,7 +31,7 @@
       <section class="section">
         <div class="column is-half is-offset-one-quarter">
           <span class="error" v-html="error"></span>
-          <form class="" action="#">
+          <form class="" action="#"> <!--@submit.prevent= jika type  button nya "submit"-->
             <div class="field">
               <p class="control has-icons-left has-icons-right">
                 <input class="input" type="text" placeholder="Username" v-model="login.username">
@@ -53,7 +53,7 @@
             </div>
             <div class="field">
               <p class="control">
-                <button class="button is-primary" type="submit" name="action" v-on:click="signin()">
+                <button class="button is-primary" type="button" name="action" v-on:click="signin()">
                   Login
                 </button> or
                 <span class="">
@@ -111,7 +111,7 @@
             </div>
             <div class="field">
               <p class="control">
-                <button class="button is-success" type="submit" name="action" v-on:click="signup()">
+                <button class="button is-success" type="button" name="action" v-on:click="signup()">
                   Register
                 </button>
               </p>

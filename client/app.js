@@ -11,23 +11,24 @@ var app = new Vue({
       username: '',
       password: ''
     },
-    error: null
+    error: null,
+    todos: []
 
   },
   methods: {
     signup () {
-      axios.post(`http://localhost:3000/signup`, this.register)
+      axios.post(`http://35.197.154.136/signup`, this.register)
       console.log('pendaftaran sukses');
     },
     signin () {
-      axios.post(`http://localhost:3000/signin`, this.login)
+      axios.post(`http://35.197.154.136/signin`, this.login)
       .then(userData => {
+        // alert(`${userData.data.msg}`)
         console.log('berhasil signin', userData);
-        // localStorage.setItem('token', userData.data.token)
+        localStorage.setItem('token', userData.data.token)
         // localStorage.setItem('id', userData.data._id)
-        alert(`${userData.data.msg}`)
-        // window.location.href = "main.html"
-        console.log(userData);
+        window.location.href = "main.html"
+        // console.log(userData);
       })
       .catch(err => {
         console.log('ini eroro ', err);
@@ -39,7 +40,23 @@ var app = new Vue({
     addToDo () {
       axios.post()
     }
+  },
+  created () {
+    // axios.get('http://35.197.154.136/todo')
+    // .then(response => {
+    //   this.todos = response.data
+    // })
+
+    axios({
+      method: 'get',
+      url: 'http://35.197.154.136/todo/user',
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+    .then(response => {
+      this.todos = response.data
+    })
+    .catch(err => console.log(err))
   }
-
-
 })

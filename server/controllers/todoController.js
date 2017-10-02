@@ -7,13 +7,14 @@ function getAllTodoes (req,res) {
 }
 
 function addTodo(req, res) {
-  Todo.create({
-    user_id: req.headers.id,
-    task_name: req.body.task_name,
-    tags: req.body.tags
-  })
-  .then(result => res.send(result))
-  .catch(err=> res.send(err))
+  let decoded = jwt.verify(req.headers.token, process.env.SECRET_JWT)
+    Todo.create({
+      user_id: decoded.id,
+      task_name: req.body.task_name,
+      tags: req.body.tags
+    })
+    .then(result => res.send(result))
+    .catch(err=> res.send(err))
 }
 
 function getSingleTodo(req, res) {
@@ -40,8 +41,10 @@ function deleteTodo(req, res) {
 }
 
 function findByUserId(req,res) {
-  Todo.find({user_id: req.params.id}).populate('user_id')
+  let decoded = jwt.verify(req.headers.token, process.env.SECRET_JWT)
+  Todo.find({user_id: decoded.id}).populate('user_id')
   .then(result=>  res.send(result))
+  .catch(err=> res.send(err))
 }
 
 module.exports = {

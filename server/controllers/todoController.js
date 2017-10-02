@@ -44,10 +44,20 @@ function deleteTodo(req, res) {
 
 function findByUserId(req,res) {
   let decoded = jwt.verify(req.headers.token, process.env.SECRET_JWT)
-  Todo.find({user_id: decoded.id}).populate('user_id')
+  Todo.findOne({user_id: decoded.id}).populate('user_id')
   .then(result=>  res.send(result))
   .catch(err=> res.send(err))
 }
+
+// jwt.verify(req.headers.token, process.env.SECRET_JWT, (err,decoded) => {
+//   if(err) {
+//     res.send(err)
+//   } else {
+//     Todo.find({user_id: decoded.id}).populate('user_id')
+//     .then(result=>  res.send(result))
+//     .catch(err=> res.send(err))
+//   }
+// }
 
 module.exports = {
   addTodo,

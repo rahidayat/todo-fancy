@@ -8,11 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <style>
+    .error {
+      color: red;
+    }
+
+    </style>
   </head>
 
   <body>
 
     <div id="app">
+      <span class="error" v-html="error"></span>
       <section class="section">
         <div class="container">
           <h1 class="title">

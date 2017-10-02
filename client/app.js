@@ -24,7 +24,7 @@ var app = new Vue({
       axios.post(`http://35.197.154.136/signin`, this.login)
       .then(userData => {
         // alert(`${userData.data.msg}`)
-        console.log('berhasil signin', userData);
+        // console.log('berhasil signin', userData);
         localStorage.setItem('token', userData.data.token)
         // localStorage.setItem('id', userData.data._id)
         window.location.href = "main.html"
@@ -46,7 +46,7 @@ var app = new Vue({
     // .then(response => {
     //   this.todos = response.data
     // })
-
+    let self = this
     axios({
       method: 'get',
       url: 'http://35.197.154.136/todo/user',
@@ -55,8 +55,12 @@ var app = new Vue({
       }
     })
     .then(response => {
-      this.todos = response.data
+      console.log('data respon',response.data);
+      self.todos = response.data
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      console.log(err)
+      self.error = err.response.data.msg
+    })
   }
 })

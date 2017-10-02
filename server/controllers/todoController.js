@@ -1,4 +1,6 @@
 const Todo = require('../models/Todo');
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 function getAllTodoes (req,res) {
   Todo.find({}).populate('user_id')

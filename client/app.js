@@ -1,3 +1,5 @@
+// var baseURL = 'http://localhost:3000'
+var baseURL = 'http://35.197.154.136'
 var app = new Vue({
   el: '#app',
   data: {
@@ -17,12 +19,12 @@ var app = new Vue({
   },
   methods: {
     signup () {
-      axios.post(`http://35.197.154.136/signup`, this.register)
+      axios.post(`${baseURL}/signup`, this.register)
       console.log('pendaftaran sukses');
     },
     signin () {
       let self = this
-      axios.post(`http://35.197.154.136/signin`, this.login)
+      axios.post(`${baseURL}/signin`, this.login)
       .then(userData => {
         // alert(`${userData.data.msg}`)
         // console.log('berhasil signin', userData);
@@ -45,7 +47,7 @@ var app = new Vue({
     getTodo () {
       console.log('masuk gettodo');
       let self = this
-      axios.get('http://35.197.154.136/todo/user', {
+      axios.get(`${baseURL}/todo/user/me`, {
         headers: {
           token: localStorage.getItem('token')
         }

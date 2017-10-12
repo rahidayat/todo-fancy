@@ -5,7 +5,9 @@ require('dotenv').config()
 const checkLogin = (req,res,next) => {
   if(req.headers.token == null) {
     res.status(401).send({msg: 'Please log in first'})
-  } else { next ()}
+  } else {
+    console.log('>>>>> masuk cek login');
+    next ()}
   // jwt.verify(req.headers.token, process.env.SECRET_JWT, (err,decoded) => {
   //   if(err) {res.send(err)}
   //   else {

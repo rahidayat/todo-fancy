@@ -42,9 +42,10 @@ function deleteTodo(req, res) {
   .catch(err=> res.send(err))
 }
 
-function findByUserId(req,res) {
+function findByUserId(req, res) {
+  console.log('>>>>> masuk findbyuserid');
   let decoded = jwt.verify(req.headers.token, process.env.SECRET_JWT)
-  Todo.findOne({user_id: decoded.id}).populate('user_id')
+  Todo.find({user_id: decoded.id}).populate('user_id')
   .then(result=>  res.send(result))
   .catch(err=> res.send(err))
 }

@@ -24,7 +24,7 @@
       <section class="section">
         <div class="container">
           <h1 class="title">
-            Welcome username
+            Welcome {{welcome}}
           </h1>
           <p class="subtitle">
             My To Do List
@@ -32,8 +32,21 @@
         </div>
       </section>
       <div class="container">
-        <input class="input is-hovered" type="text" placeholder="add to do">
-        <button class="button is-primary" @click="addToDo">Submit</button>
+        <div class="columns">
+          <div class="column is-half">
+            <div class="field">
+              <div class="control">
+                <input class="input is-hovered" type="text" placeholder="task name" v-model="newTodo.task_name">
+              </div>
+              <div class="control">
+                <input class="input is-hovered" type="text" placeholder="tags" v-model="newTodo.tags">
+              </div>
+              <div class="control">
+                <button class="button is-primary" @click="addTodo(newTodo)">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <section class="section">
         <div class="container">
@@ -47,7 +60,7 @@
               <div class="media-content">
                 <div class="content">
                   <p>
-                    <strong>{{todo.user_id.name}}</strong> 
+                    <strong>{{todo.user_id.name}}</strong>
                     <br>
                     {{todo.task_name}}
                     <br>
